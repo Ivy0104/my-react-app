@@ -1,5 +1,7 @@
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import React, { Suspense } from 'react';
+
+import V404 from '../views/v-404'
 
 const context = require.context('../routes', true, /\.js$/)
 
@@ -8,7 +10,6 @@ context.keys().forEach(key => {
   routes = [...routes, ...context(key).default]
 })
 
-console.log('routes config', routes)
 
 const RouteWithSubRoutes = route => (
     <Route
@@ -22,7 +23,7 @@ const RouteWithSubRoutes = route => (
   );
 
 export const App = () => (
-    <Router>      
+    <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <ul>
           <li>
@@ -33,8 +34,9 @@ export const App = () => (
           </li>
         </ul>
         <Switch>
-          {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+        {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
+        <Route path="*" component={V404} />
         </Switch>
       </Suspense>
-    </Router>  
+    </Router>
   );

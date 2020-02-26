@@ -1,4 +1,4 @@
-import {getModule} from '../utils/require-context'
+import { getModule } from '../utils/require-context'
 
 const context = require.context('../store', false, /\.js$/)
 

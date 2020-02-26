@@ -5,9 +5,12 @@ import Board from './comps/board'
 
 @inject("gameStore")
 
- @observer 
- 
- class Game extends Component {
+ @observer
+
+class Game extends Component {
+  testThis() {
+      console.log(this)
+    }
     render() {
         return (
             <div className="game">
@@ -16,11 +19,11 @@ import Board from './comps/board'
               </div>
               <div className="game-info">
                 <div onClick = {this.props.gameStore.updateName}>{this.props.gameStore.name}</div>
-                <ol>{/* TODO */}</ol>
+              <ol onClick={() => this.testThis()}>testThis</ol>
               </div>
             </div>
           );
-    }    
+    }
   }
 
   export default Game
